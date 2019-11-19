@@ -2,6 +2,8 @@
 declare -A gameBoard
 NUM_ROWS=3
 NUM_COLUMNS=3
+player=0
+computer=0
 
 for ((i=1;i<=NUM_ROWS;i++))
 do
@@ -19,3 +21,18 @@ do
         done
 	echo " | "
 done
+
+assignValueToPlayer()
+{
+	randomCheckForXO=$((RANDOM%2))
+	if [ $randomCheckForXO -eq 0 ]
+	then
+		player=X
+		computer=O
+	elif [ $randomCheckForXO -eq 1 ]
+	then
+		player=O
+		computer=X
+	fi
+}
+assignValueToPlayer
