@@ -11,17 +11,44 @@ for ((i=1;i<=NUM_ROWS;i++))
 do
 	for ((j=1;j<=NUM_COLUMNS;j++))
 	do
-		gameBoard[$i,$j]=0
+		gameBoard[$i,$j]=' '
 	done
 done
 
-for ((i=1;i<=NUM_ROWS;i++))
+checkPosition()
+{
+	read -p "Enter the value of x :: " xValue
+	read -p "Enter the value of y :: " yValue
+
+	for ((i=1;i<=NUM_ROWS;i++))
+	do
+        	for ((j=1;j<=NUM_COLUMNS;j++))
+        	do
+			if [ $xValue == $i -a $yValue == $j ]
+			then
+                		gameBoard[$i,$j]=X
+			fi
+        	done
+	done
+}
+
+displayBoard()
+{
+	for ((i=1;i<=NUM_ROWS;i++))
+	do
+		echo " ------------- "
+        	for ((j=1;j<=NUM_COLUMNS;j++))
+        	do
+			printf " | ${gameBoard[$i,$j]}"
+        	done
+		echo " | "
+	done
+}
+
+for ((k=1;k<=3;k++))
 do
-        for ((j=1;j<=NUM_COLUMNS;j++))
-        do
-		printf " | ${gameBoard[$i,$j]}"
-        done
-	echo " | "
+	checkPosition
+	displayBoard
 done
 
 assignValueToPlayer()
